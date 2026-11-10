@@ -1,0 +1,16 @@
+name: security
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  schedule:
+    - cron: "0 6 * * 1" # weekly: catches new vulnerabilities in unchanged code
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  scan:
+    uses: Lively-ForecastEvents/security-hub/.github/workflows/scan.yml@main
